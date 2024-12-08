@@ -176,6 +176,9 @@ class Trainer:
             self.model.module.save_pretrained(f'epoch_{epoch}_checkpoint')
         else:
             self.model.save_pretrained(f'epoch_{epoch}_checkpoint')
+        
+        model_state_dict = self.model.module.state_dict() if self.is_ddp_training else self.model.state_dict()
+        torch.save(model_state_dict, os.path.join(path_dir, f'model_epoch_{epoch}.bin'))
 
         print("Done saved at", f'epoch_{epoch}_checkpoint')
 
