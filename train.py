@@ -200,7 +200,7 @@ class Trainer:
 
         data_trainloader = DataLoader(
             train_dataset,
-            batch_size=self.args.train_batch_size,
+            batch_size=self.batch_size,
             sampler=train_sampler,
             drop_last=True,
             collate_fn=data_collator
@@ -213,7 +213,7 @@ class Trainer:
 
         data_testloader = DataLoader(
                 eval_dataset,
-                batch_size=self.args.eval_batch_size,
+                batch_size=self.batch_size,,
                 sampler=SequentialSampler(eval_dataset),
                 drop_last=True,
                 collate_fn=data_collator
